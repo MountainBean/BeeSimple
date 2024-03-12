@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg7kpw1luh1r1"]
+
+[ext_resource type="Script" path="res://hive_base/hive_base.gd" id="1_82r3m"]
+[ext_resource type="Texture2D" uid="uid://xhetuqmbxy7a" path="res://assets/hive.png" id="1_xty6h"]
+
+[node name="HiveBase" type="Node2D"]
+script = ExtResource("1_82r3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_xty6h")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="Bees" type="Node2D" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
