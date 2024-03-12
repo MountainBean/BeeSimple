@@ -24,3 +24,4 @@ scale = Vector2(3, 3)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ModeSelect" parent="CanvasLayer" instance=ExtResource("3_jjilh")]
+mouse_filter = 1

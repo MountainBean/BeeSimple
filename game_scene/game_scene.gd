@@ -22,7 +22,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("MouseClick"):
 				hive_at_mouse(get_viewport().get_mouse_position())
 		GameManager.CURSOR_MODE.SELECT:
-			if Input.is_action_pressed("MouseClick"):
+			if Input.is_action_pressed("RightClick"):
 				var bee_list: Array
 				for hive in hives.get_children(true):
 					for bee in hive.get_bees():

@@ -5,6 +5,7 @@ class_name bee_base
 @onready var bee_body = $BeeBody
 @onready var label = $BeeBody/Label
 @onready var jitter_timer = $BeeBody/JitterTimer
+@onready var sprite_2d = $BeeBody/Sprite2D
 
 const JITTER_INTERVAL: float = 0.2
 
@@ -51,6 +52,9 @@ func add_jitter() -> void:
 	var flight_jitter = _max_vel / 2
 	var jitter_dir = Vector2.from_angle(randf_range(deg_to_rad(-180),deg_to_rad(180)))
 	_vel = _vel + jitter_dir * flight_jitter
+
+func on_select() -> void:
+	sprite_2d.self_modulate("ff9193")
 
 func set_home(point: Vector2) -> void:
 	_home_point = point

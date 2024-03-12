@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 class_name hive_base
 
@@ -7,6 +7,10 @@ class_name hive_base
 
 @onready var spawn_timer = $SpawnTimer
 @onready var bees = $Bees
+@onready var sprite_2d = $Sprite2D
+@onready var collision_shape_2d = $CollisionShape2D
+
+var _selected: bool = false
 
 var BEE_BASE: PackedScene = load("res://bee_base/bee_base.tscn")
 
@@ -30,5 +34,18 @@ func new_hive_bee() -> void:
 func get_bees() -> Array:
 	return bees.get_children()
 
+func selected() -> void:
+	sprite_2d.self_modulate = Color("d079ff")
+	_selected = true
+	
+func deselect() -> void:
+	sprite_2d.self_modulate = Color("ffffff")
+	_selected = false
+
 func _on_spawn_timer_timeout():
 	new_hive_bee()
+
+func _on_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("MouseClick") == true:
+		SignalManager.on_hive_select.emit(self)
+
