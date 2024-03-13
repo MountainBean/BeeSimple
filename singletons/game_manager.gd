@@ -1,5 +1,6 @@
 extends Node
 
+
 enum CURSOR_MODE { SELECT, BUILD }
 
 var _selected_hives: Array[hive_base]  = []
@@ -15,6 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 
 func add_to_select_hives(hives: Array[hive_base]) -> void:
 	_selected_hives.append_array(hives)

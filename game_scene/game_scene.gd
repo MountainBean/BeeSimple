@@ -4,13 +4,13 @@ extends Node2D
 
 
 const HIVE_BASE = preload("res://hive_base/hive_base.tscn")
+const BEE_BASE = preload("res://bee_base/bee_base.tscn")
 
 var select_box: Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.set_cursor_mode(GameManager.CURSOR_MODE.SELECT)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -16,8 +16,6 @@ texture = ExtResource("1_xty6h")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
-[node name="Bees" type="Node2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_22gnr")
 

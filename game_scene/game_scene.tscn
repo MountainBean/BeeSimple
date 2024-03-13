@@ -9,6 +9,8 @@ script = ExtResource("1_wvw2w")
 
 [node name="Hives" type="Node2D" parent="."]
 
+[node name="Bees" type="Node2D" parent="."]
+
 [node name="FlowerBase" parent="." instance=ExtResource("2_yya1e")]
 position = Vector2(938, 308)
 scale = Vector2(3, 3)
