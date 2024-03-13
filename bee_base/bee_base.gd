@@ -15,8 +15,9 @@ var _acc: float = ( (_max_vel / 2) * (_max_vel / 2) ) / _orbit_radius
 var _home_point: Vector2 = Vector2.ZERO
 var _direction: Vector2 = Vector2.ZERO
 var _vel: Vector2 = Vector2.ZERO
-var marker1: Sprite2D
-var origin_hive: hive_base
+var _origin_hive: hive_base
+var _cur_hive: hive_base
+var _selected: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +37,9 @@ func _physics_process(delta):
 	
 	bee_body.global_position += _vel
 
+func _get_class_name() -> String:
+	return "bee_base"
+
 func update_label() -> void:
 	label.text = "%.1f, %.1f\nvel: %.1f" % [bee_body.global_position.x, bee_body.global_position.y, _vel.length()]
 
@@ -54,16 +58,28 @@ func add_jitter() -> void:
 	_vel = _vel + jitter_dir * flight_jitter
 
 func on_select() -> void:
-	sprite_2d.self_modulate("ff9193")
+	sprite_2d.self_modulate = Color("ff9193")
+	_selected = true
+	print("bee selected: %s" %str(self))
+
+func on_deselect() -> void:
+	sprite_2d.self_modulate = Color("ffffff")
+	_selected = false
 
 func set_home(point: Vector2) -> void:
 	_home_point = point
 
-func set_hive(hive: hive_base) -> void:
-	origin_hive = hive
+func set_origin_hive(hive: hive_base) -> void:
+	_origin_hive = hive
+	
+func set_cur_hive(hive: hive_base) -> void:
+	_cur_hive = hive
 
-func get_hive() -> hive_base:
-	return origin_hive
+func get_origin_hive() -> hive_base:
+	return _origin_hive
+	
+func get_cur_hive() -> hive_base:
+	return _cur_hive
 
 func _on_jitter_timer_timeout():
 	add_jitter()
