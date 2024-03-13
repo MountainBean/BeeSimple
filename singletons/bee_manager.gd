@@ -12,6 +12,7 @@ func call_add_child(child_to_add) -> void:
 
 func make_new_hive_bee(hive: hive_base) -> void:
 	var bee = BEE_BASE.instantiate()
+	bee.global_position = hive.position
 	bee.set_origin_hive(hive)
 	bee.set_cur_hive(hive)
 	print("hive position = x: %.1f, y: %.1f" % [hive.position.x, hive.position.y])

@@ -9,9 +9,10 @@ class_name bee_base
 
 const JITTER_INTERVAL: float = 0.2
 
-var _orbit_radius: float = 0.4	# 0.25 is a good default
+var _orbit_radius: float = 0.5	# 0.25 is a good default
 var _max_vel: float = 8	#4 is a good default
 var _acc: float = ( (_max_vel / 2) * (_max_vel / 2) ) / _orbit_radius
+var _flight_jitter = 2 * sqrt(_max_vel)
 var _home_point: Vector2 = Vector2.ZERO
 var _direction: Vector2 = Vector2.ZERO
 var _vel: Vector2 = Vector2.ZERO
@@ -53,9 +54,8 @@ func adjust_position(delta: float) -> void:
 	bee_body.global_position = bee_body.global_position + _vel * delta
 
 func add_jitter() -> void:
-	var flight_jitter = _max_vel / 2
 	var jitter_dir = Vector2.from_angle(randf_range(deg_to_rad(-180),deg_to_rad(180)))
-	_vel = _vel + jitter_dir * flight_jitter
+	_vel = _vel + jitter_dir * _flight_jitter
 
 func on_select() -> void:
 	sprite_2d.self_modulate = Color("ff9193")
