@@ -15,8 +15,6 @@ func make_new_hive_bee(hive: hive_base) -> void:
 	bee.global_position = hive.position
 	bee.set_origin_hive(hive)
 	bee.set_cur_hive(hive)
-	print("hive position = x: %.1f, y: %.1f" % [hive.position.x, hive.position.y])
 	bee.set_home(hive.position)
-	print("bee home = x: %.1f, y: %.1f" % [bee._home_point.x, bee._home_point.y])
 	_bees.append(bee)
 	call_add_child(bee)

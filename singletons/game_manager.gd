@@ -46,9 +46,12 @@ func clear_selected_hives() -> void:
 	_selected_hives.clear()
 
 func set_cursor_mode(mode_select: CURSOR_MODE) -> void:
+	if mode_select == _cm:
+		return
+	var _cm_last_frame: CURSOR_MODE = _cm
 	_cm = mode_select
 	print("Mode: %s" % str(CURSOR_MODE.keys()[_cm]))
-	SignalManager.on_mode_select.emit()
+	SignalManager.on_mode_select.emit(_cm_last_frame)
 
 func on_hive_click(hive: hive_base):
 	if _cm == CURSOR_MODE.BUILD:

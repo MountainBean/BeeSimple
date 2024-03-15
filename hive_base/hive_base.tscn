@@ -1,23 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg7kpw1luh1r1"]
+[gd_scene load_steps=7 format=3 uid="uid://cg7kpw1luh1r1"]
 
 [ext_resource type="Script" path="res://hive_base/hive_base.gd" id="1_82r3m"]
-[ext_resource type="Texture2D" uid="uid://xhetuqmbxy7a" path="res://assets/hive.png" id="1_xty6h"]
+[ext_resource type="Texture2D" uid="uid://dve78btbtdf5p" path="res://assets/objects/beekeepin-hive.png" id="2_2xihm"]
+[ext_resource type="PackedScene" uid="uid://du1s31gnee4ux" path="res://dotted_circle/dotted_circle.tscn" id="3_p4fb1"]
+[ext_resource type="LabelSettings" uid="uid://unygw1d26pfk" path="res://assets/gl_24_wh.tres" id="4_8kn45"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_22gnr"]
-radius = 37.0
+radius = 35.0143
 
-[node name="HiveBase" type="Area2D"]
-collision_mask = 0
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5bs5"]
+radius = 300.0
+
+[node name="HiveBase" type="Node2D"]
 script = ExtResource("1_82r3m")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("1_xty6h")
+[node name="HiveBody" type="Area2D" parent="."]
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="HiveBody"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_2xihm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SpawnTimer" type="Timer" parent="HiveBody"]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="HiveBody"]
 shape = SubResource("CircleShape2D_22gnr")
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[node name="HiveRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="HiveRangeCircle" type="CollisionShape2D" parent="HiveRange"]
+shape = SubResource("CircleShape2D_r5bs5")
+debug_color = Color(0.488149, 0.58178, 0.175842, 0.42)
+
+[node name="DottedCircle" parent="." instance=ExtResource("3_p4fb1")]
+radius = 300.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -59.0
+offset_top = -101.0
+offset_right = 61.0
+offset_bottom = -44.0
+text = "Flowers: 00
+Bees: 00/00"
+label_settings = ExtResource("4_8kn45")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="HiveBody" to="." method="_on_hive_body_input_event"]
+[connection signal="mouse_entered" from="HiveBody" to="." method="_on_hive_body_mouse_entered"]
+[connection signal="mouse_exited" from="HiveBody" to="." method="_on_hive_body_mouse_exited"]
+[connection signal="timeout" from="HiveBody/SpawnTimer" to="." method="_on_spawn_timer_timeout"]

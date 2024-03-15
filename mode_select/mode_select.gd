@@ -11,5 +11,5 @@ func _ready():
 func _process(delta):
 	pass
 
-func on_mode_select() -> void:
+func on_mode_select(_cm_last_frame: GameManager.CURSOR_MODE) -> void:
 	label.text = GameManager.CURSOR_MODE.keys()[GameManager._cm]

@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://bjl3x5i6riy2u"]
+
+[ext_resource type="Texture2D" uid="uid://bwlvftlbtlboo" path="res://assets/tilesets/water/Sproutlands-Water1.png" id="1_yabas"]
+[ext_resource type="Texture2D" uid="uid://cfe8lbd3h0g1l" path="res://assets/tilesets/water/Sproutlands-Water2.png" id="2_0g4w1"]
+[ext_resource type="Texture2D" uid="uid://dde8udrl2wbhs" path="res://assets/tilesets/water/Sproutlands-Water3.png" id="3_vdt21"]
+[ext_resource type="Texture2D" uid="uid://c1k223diguo4e" path="res://assets/tilesets/water/Sproutlands-Water4.png" id="4_eblvo"]
+
+[resource]
+frames = 4
+speed_scale = 2.0
+frame_0/texture = ExtResource("1_yabas")
+frame_1/texture = ExtResource("2_0g4w1")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_vdt21")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_eblvo")
+frame_3/duration = 1.0

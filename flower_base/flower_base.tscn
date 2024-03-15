@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcx8j8ybnhdwj"]
+[gd_scene load_steps=4 format=3 uid="uid://dcx8j8ybnhdwj"]
 
-[ext_resource type="Texture2D" uid="uid://bac0re1f4c80r" path="res://assets/flower.png" id="1_q3cbp"]
+[ext_resource type="Script" path="res://flower_base/flower_base.gd" id="1_ghg68"]
+[ext_resource type="Texture2D" uid="uid://bgt2naw1dm7k5" path="res://assets/objects/Sproutlands-red-flower.png" id="2_q3r7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jf6e4"]
-radius = 3.0
+radius = 6.0
 
 [node name="FlowerBase" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_ghg68")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_q3cbp")
+texture = ExtResource("2_q3r7w")
+region_rect = Rect2(113.457, 50.3228, 12.2969, 10.9456)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -3)
 shape = SubResource("CircleShape2D_jf6e4")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2, -3)

@@ -60,7 +60,6 @@ func add_jitter() -> void:
 func on_select() -> void:
 	sprite_2d.self_modulate = Color("ff9193")
 	_selected = true
-	print("bee selected: %s" %str(self))
 
 func on_deselect() -> void:
 	sprite_2d.self_modulate = Color("ffffff")
