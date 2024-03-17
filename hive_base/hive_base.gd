@@ -4,12 +4,14 @@ class_name hive_base
 
 @export var bee_spawn_rate: float = 240
 @export var population_cap: int = 8
+@export var hive_radius: int = 200
 
 @onready var spawn_timer = $HiveBody/SpawnTimer
 @onready var sprite_2d = $HiveBody/Sprite2D
 @onready var body_collision = $HiveBody/BodyCollision
 @onready var dotted_circle = $DottedCircle
 @onready var hive_range = $HiveRange
+@onready var hive_range_circle = $HiveRange/HiveRangeCircle
 @onready var label = $Label
 
 var _selected: bool = false
@@ -17,11 +19,13 @@ var _selected: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_timer.set_wait_time(60.0 / bee_spawn_rate)
+	dotted_circle.radius = hive_radius
+	hive_range_circle.get_shape().radius = hive_radius
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	population_cap = count_near_flowers() * 10
+	population_cap = count_near_flowers() * 1
 	label.text = "Flowers: %s\nBees: %s/%s" % [count_near_flowers(), get_origin_bees().size(), population_cap]
 
 func _get_class_name() -> String:

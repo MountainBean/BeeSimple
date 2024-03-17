@@ -8,11 +8,16 @@ class_name bee_base
 @onready var sprite_2d = $BeeBody/Sprite2D
 
 const JITTER_INTERVAL: float = 0.2
+const ORBIT_CONSTANT: int = 125
 
-var _orbit_radius: float = 0.5	# 0.25 is a good default
-var _max_vel: float = 8	#4 is a good default
+enum FLIGHT_MODE { IDLE, MOVING, FORAGING, LANDING }
+
+var _flight_mode: FLIGHT_MODE = FLIGHT_MODE.IDLE
+var _orbit_radius: float = 0.25	# 1 is a radius of about 125 pixels
+var _default_max_vel: float = 4	#4 is a good default
+var _max_vel: float = 4	#4 is a good default
 var _acc: float = ( (_max_vel / 2) * (_max_vel / 2) ) / _orbit_radius
-var _flight_jitter = 2 * sqrt(_max_vel)
+var _flight_jitter: float = 2 * sqrt(_max_vel)
 var _home_point: Vector2 = Vector2.ZERO
 var _direction: Vector2 = Vector2.ZERO
 var _vel: Vector2 = Vector2.ZERO
@@ -25,16 +30,18 @@ func _ready():
 	# set random initial direction and speed
 	_direction = Vector2.from_angle(randf_range(deg_to_rad(-180),deg_to_rad(180)))
 	_vel = _direction * _max_vel
-	
 	# set home
 	set_home(global_position)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _physics_process(delta):
 	update_label()
 	set_direction()
 	adjust_velocity(delta)
 	adjust_position(delta)
+	calculate_flight_mode()
+	if _vel.length() < 0.01:
+		print(str(bee_body.global_position.distance_to(_home_point)))
 	
 	bee_body.global_position += _vel
 
@@ -42,7 +49,7 @@ func _get_class_name() -> String:
 	return "bee_base"
 
 func update_label() -> void:
-	label.text = "%.1f, %.1f\nvel: %.1f" % [bee_body.global_position.x, bee_body.global_position.y, _vel.length()]
+	label.text = str(FLIGHT_MODE.keys()[_flight_mode])
 
 func set_direction() -> void:
 	_direction = bee_body.global_position.direction_to(_home_point)
@@ -79,6 +86,24 @@ func get_origin_hive() -> hive_base:
 	
 func get_cur_hive() -> hive_base:
 	return _cur_hive
+
+func calculate_flight_mode() -> void:
+	match _flight_mode: 
+		FLIGHT_MODE.IDLE:
+			_max_vel = _default_max_vel
+			_flight_jitter = 2 * sqrt(_max_vel)
+			if bee_body.global_position.distance_to(_home_point) > _orbit_radius * 3 * ORBIT_CONSTANT:
+				_flight_mode = FLIGHT_MODE.MOVING
+		FLIGHT_MODE.MOVING:
+			_max_vel = 1.2 * _default_max_vel
+			_flight_jitter = _flight_jitter / 2
+			if bee_body.global_position.distance_to(_home_point) < _orbit_radius * 3 * ORBIT_CONSTANT:
+				_flight_mode = FLIGHT_MODE.IDLE
+		FLIGHT_MODE.FORAGING:
+			pass
+		FLIGHT_MODE.LANDING:
+			pass
+	
 
 func _on_jitter_timer_timeout():
 	add_jitter()

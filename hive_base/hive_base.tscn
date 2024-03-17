@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cg7kpw1luh1r1"]
 
 [ext_resource type="Script" path="res://hive_base/hive_base.gd" id="1_82r3m"]
-[ext_resource type="Texture2D" uid="uid://dve78btbtdf5p" path="res://assets/objects/beekeepin-hive.png" id="2_2xihm"]
+[ext_resource type="Texture2D" uid="uid://cbdklbxly54f3" path="res://assets/hive.png" id="2_bec6j"]
 [ext_resource type="PackedScene" uid="uid://du1s31gnee4ux" path="res://dotted_circle/dotted_circle.tscn" id="3_p4fb1"]
 [ext_resource type="LabelSettings" uid="uid://unygw1d26pfk" path="res://assets/gl_24_wh.tres" id="4_8kn45"]
 
@@ -18,7 +18,7 @@ script = ExtResource("1_82r3m")
 
 [node name="Sprite2D" type="Sprite2D" parent="HiveBody"]
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_2xihm")
+texture = ExtResource("2_bec6j")
 
 [node name="SpawnTimer" type="Timer" parent="HiveBody"]
 

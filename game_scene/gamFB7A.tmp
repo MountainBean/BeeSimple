@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://buahnb1n0jhcl"]
+[gd_scene load_steps=4 format=3 uid="uid://buahnb1n0jhcl"]
 
 [ext_resource type="Script" path="res://game_scene/game_scene.gd" id="1_wvw2w"]
 [ext_resource type="PackedScene" uid="uid://b3ip2l87x4c" path="res://level_map/level_map.tscn" id="2_pak6g"]
 [ext_resource type="PackedScene" uid="uid://bn1vtpiww5ti" path="res://mode_select/mode_select.tscn" id="3_jjilh"]
-[ext_resource type="PackedScene" uid="uid://dcx8j8ybnhdwj" path="res://flower_base/flower_base.tscn" id="4_iieb3"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_wvw2w")
 
 [node name="LevelMap" parent="." instance=ExtResource("2_pak6g")]
+position = Vector2(507, 418)
 
 [node name="Hives" type="Node2D" parent="."]
 
@@ -22,15 +22,8 @@ mouse_filter = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1, 0)
 anchor_mode = 0
-
-[node name="FlowerBase" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(615, 229)
-scale = Vector2(2, 2)
-
-[node name="FlowerBase2" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(651, 408)
-scale = Vector2(2, 2)
-
-[node name="FlowerBase3" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(775, 277)
-scale = Vector2(2, 2)
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_right = 4650
+limit_bottom = 2700
