@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://f864k5rquppk"]
+
+[ext_resource type="Script" path="res://user_interface/hive_stats/hive_stats.gd" id="1_u2p0f"]
+
+[node name="HiveStats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_u2p0f")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+
+[node name="Label" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Hive ID: 0000
+Claimed Flowers: 00
+Garrisoned Bees: 00
+"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmqdsjmafejkh"]
+
+[ext_resource type="PackedScene" uid="uid://cxk28cfis0jrm" path="res://user_interface/hud_buttons/hud_button_base/hud_button_base.tscn" id="1_yn5kr"]
+[ext_resource type="Script" path="res://user_interface/hud_buttons/hud_button_forage/hud_button_forage.gd" id="2_xqxlk"]
+
+[node name="HudButtonForage" instance=ExtResource("1_yn5kr")]
+script = ExtResource("2_xqxlk")
+
+[node name="Label" parent="." index="0"]
+text = "Forage"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

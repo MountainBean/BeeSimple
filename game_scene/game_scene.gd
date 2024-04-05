@@ -31,7 +31,8 @@ func _process(delta):
 	calculate_cursor_mode()
 	match GameManager.get_cursor_mode():
 		GameManager.CURSOR_MODE.BUILD:
-			_ghost_object.position = get_global_mouse_position()
+			if _ghost_object:
+				_ghost_object.position = get_global_mouse_position()
 			if Input.is_action_just_pressed("MouseClick"):
 				for hive in hives.get_children():
 					if is_mouse_over_hive(hive):
@@ -46,14 +47,17 @@ func _process(delta):
 						for bee in GameManager._selected_bees:
 							bee.set_cur_hive(hive)
 							bee.set_home(hive.global_position)
+							bee.start_flying()
 						return
 				for bee in GameManager._selected_bees:
 					bee.set_home(get_global_mouse_position())
+					bee.start_flying()
 	
 	if Input.is_action_just_pressed("SendHome"):
 		for bee in bees.get_children():
 			bee.set_cur_hive(bee.get_origin_hive())
 			bee.set_home(bee.get_origin_hive().global_position)
+			bee.start_flying()
 	if Input.is_action_just_pressed("Esc"):
 		SignalManager.on_deselect_all.emit()
 		GameManager.set_cursor_mode(GameManager.CURSOR_MODE.SELECT)
@@ -66,11 +70,11 @@ func is_mouse_over_hive(hive: hive_base) -> bool:
 func hive_at_mouse(pos: Vector2) -> void:
 	var hive = HIVE_BASE.instantiate()
 	hive.global_position = pos
-	hives.add_child(hive)
-	hive.spawn_timer.start()
+	hives.call_deferred("add_child", hive)
 
 func show_ghost_object(scene: PackedScene) -> void:
 	_ghost_object = scene.instantiate()
+	_ghost_object._is_ghost = true
 	_ghost_object.set_process(false)
 	add_child(_ghost_object)
 	_ghost_object.modulate = (Color("ffffff90"))
@@ -80,7 +84,7 @@ func hide_ghost_object() -> void:
 	_ghost_object.queue_free()
 
 func on_mode_select(cm_last_frame: GameManager.CURSOR_MODE) -> void:
-	if cm_last_frame == GameManager.CURSOR_MODE.BUILD:
+	if cm_last_frame == GameManager.CURSOR_MODE.BUILD and _ghost_object != null:
 		hide_ghost_object()
 
 func update_camera_drag() -> void:

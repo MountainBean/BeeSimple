@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 SignalManager="*res://singletons/signal_manager.gd"
 GameManager="*res://singletons/game_manager.gd"
 BeeManager="*res://singletons/bee_manager.gd"
+ResourceManager="*res://singletons/resource_manager.gd"
 
 [input]
 

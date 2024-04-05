@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkmqshmcjb5sg"]
+
+[ext_resource type="Script" path="res://user_interface/user_interface.gd" id="1_xcnht"]
+[ext_resource type="PackedScene" uid="uid://dy38qerebtn7r" path="res://user_interface/bee_hud/bee_hud.tscn" id="2_7qxvv"]
+[ext_resource type="PackedScene" uid="uid://bn1vtpiww5ti" path="res://user_interface/mode_select/mode_select.tscn" id="2_u1lgx"]
+[ext_resource type="PackedScene" uid="uid://f864k5rquppk" path="res://user_interface/hive_stats/hive_stats.tscn" id="4_fwn6p"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xcnht")
+
+[node name="ModeSelect" parent="." instance=ExtResource("2_u1lgx")]
+layout_mode = 1
+
+[node name="BeeHud" parent="." instance=ExtResource("2_7qxvv")]
+visible = false
+layout_mode = 1
+
+[node name="HiveStats" parent="." instance=ExtResource("4_fwn6p")]
+visible = false
+layout_mode = 1

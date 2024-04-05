@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bn1vtpiww5ti"]
 
-[ext_resource type="LabelSettings" uid="uid://defp2hgjxgs5p" path="res://assets/gl_48_blue.tres" id="1_0dm2i"]
-[ext_resource type="Script" path="res://mode_select/mode_select.gd" id="1_40007"]
+[ext_resource type="Script" path="res://user_interface/mode_select/mode_select.gd" id="1_nlq7s"]
+[ext_resource type="LabelSettings" uid="uid://defp2hgjxgs5p" path="res://assets/gl_48_blue.tres" id="2_p4b6k"]
 
 [node name="ModeSelect" type="Control"]
 layout_mode = 3
@@ -10,7 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_40007")
+mouse_filter = 1
+script = ExtResource("1_nlq7s")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -29,4 +30,4 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "MODE"
-label_settings = ExtResource("1_0dm2i")
+label_settings = ExtResource("2_p4b6k")

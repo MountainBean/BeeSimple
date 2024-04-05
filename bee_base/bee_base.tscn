@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7miktq3w3662"]
+[gd_scene load_steps=5 format=3 uid="uid://c7miktq3w3662"]
 
 [ext_resource type="Script" path="res://bee_base/bee_base.gd" id="1_81erx"]
 [ext_resource type="Texture2D" uid="uid://1xhph5iwwwfx" path="res://assets/bee.png" id="2_5b1so"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_06yha"]
 radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nu7wx"]
+radius = 80.0
 
 [node name="BeeBase" type="Node2D"]
 script = ExtResource("1_81erx")
@@ -19,7 +22,6 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_5b1so")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeeBody"]
-visible = false
 shape = SubResource("CircleShape2D_06yha")
 
 [node name="Label" type="Label" parent="BeeBody"]
@@ -40,5 +42,12 @@ vertical_alignment = 1
 [node name="JitterTimer" type="Timer" parent="BeeBody"]
 wait_time = 0.2
 autostart = true
+
+[node name="BeeRange" type="Area2D" parent="BeeBody"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeeBody/BeeRange"]
+shape = SubResource("CircleShape2D_nu7wx")
 
 [connection signal="timeout" from="BeeBody/JitterTimer" to="." method="_on_jitter_timer_timeout"]

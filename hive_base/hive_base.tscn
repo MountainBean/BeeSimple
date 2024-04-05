@@ -25,6 +25,9 @@ texture = ExtResource("2_bec6j")
 [node name="BodyCollision" type="CollisionShape2D" parent="HiveBody"]
 shape = SubResource("CircleShape2D_22gnr")
 
+[node name="Marker2D" type="Marker2D" parent="HiveBody"]
+position = Vector2(-1, 34)
+
 [node name="HiveRange" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4

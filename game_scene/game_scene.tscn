@@ -2,21 +2,18 @@
 
 [ext_resource type="Script" path="res://game_scene/game_scene.gd" id="1_wvw2w"]
 [ext_resource type="PackedScene" uid="uid://b3ip2l87x4c" path="res://level_map/level_map.tscn" id="2_pak6g"]
-[ext_resource type="PackedScene" uid="uid://bn1vtpiww5ti" path="res://mode_select/mode_select.tscn" id="3_jjilh"]
+[ext_resource type="PackedScene" uid="uid://bkmqshmcjb5sg" path="res://user_interface/user_interface.tscn" id="3_rehby"]
 [ext_resource type="PackedScene" uid="uid://dcx8j8ybnhdwj" path="res://flower_base/flower_base.tscn" id="4_iieb3"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_wvw2w")
 
 [node name="LevelMap" parent="." instance=ExtResource("2_pak6g")]
-
-[node name="Hives" type="Node2D" parent="."]
-
-[node name="Bees" type="Node2D" parent="."]
+modulate = Color(0.34902, 0.34902, 0.34902, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ModeSelect" parent="CanvasLayer" instance=ExtResource("3_jjilh")]
+[node name="UserInterface" parent="CanvasLayer" instance=ExtResource("3_rehby")]
 mouse_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -24,13 +21,53 @@ position = Vector2(-1, 0)
 anchor_mode = 0
 
 [node name="FlowerBase" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(615, 229)
+position = Vector2(400, 200)
 scale = Vector2(2, 2)
 
 [node name="FlowerBase2" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(651, 408)
+position = Vector2(500, 200)
 scale = Vector2(2, 2)
 
 [node name="FlowerBase3" parent="." instance=ExtResource("4_iieb3")]
-position = Vector2(775, 277)
+position = Vector2(600, 200)
 scale = Vector2(2, 2)
+
+[node name="FlowerBase4" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(354, 243)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase5" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(454, 243)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase6" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(554, 243)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase7" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(821, 473)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase8" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(921, 473)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase9" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(1021, 473)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase10" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(775, 516)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase11" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(875, 516)
+scale = Vector2(2, 2)
+
+[node name="FlowerBase12" parent="." instance=ExtResource("4_iieb3")]
+position = Vector2(975, 516)
+scale = Vector2(2, 2)
+
+[node name="Hives" type="Node2D" parent="."]
+
+[node name="Bees" type="Node2D" parent="."]

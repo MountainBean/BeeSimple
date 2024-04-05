@@ -11,6 +11,7 @@ func _ready():
 	SignalManager.on_hive_click.connect(on_hive_click)
 	SignalManager.on_bees_grabbed.connect(on_bees_grabbed)
 	SignalManager.on_deselect_all.connect(on_deselect_all)
+	SignalManager.on_forage_command.connect(on_forage_command)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,6 +75,10 @@ func on_bees_grabbed(bees: Array[bee_base]) -> void:
 func on_deselect_all() -> void:
 	clear_selected_hives()
 	clear_selected_bees()
+
+func on_forage_command() -> void:
+	for bee in _selected_bees:
+		bee.start_foraging()
 
 func get_cursor_mode() -> CURSOR_MODE:
 	return _cm
